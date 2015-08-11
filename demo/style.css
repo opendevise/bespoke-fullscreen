@@ -43,7 +43,7 @@ h1, p {
   right: 0;
   bottom: 0;
   */
-  /* ...or use view sizes; seems to break strategy of bespoke-scale in Firefox */
+  /* ...or use view sizes */
   width: 100vw;
   height: 100vh;
 
