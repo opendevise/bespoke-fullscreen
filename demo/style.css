@@ -12,6 +12,10 @@ body {
   margin: 0;
 }
 
+h1, p {
+  margin: 0.5em 0;
+}
+
 #presentation {
   font-family: Arial, sans-serif;
   font-size: 2em;
