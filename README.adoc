@@ -2,9 +2,10 @@
 Dan Allen
 :idprefix:
 :idseparator: -
+:experimental:
 
-Toggles overscreen mode when the "f" key is pressed in a http://markdalgleish.com/projects/bespoke.js[bespoke.js] presentation.
-Delegates to the native fullscreen mechanism in the browser.
+Toggles overscreen mode when the kbd:[f] key is pressed in a http://markdalgleish.com/projects/bespoke.js[bespoke.js] presentation.
+Delegates to the native fullscreen mechanism of the browser.
 
 == Download
 
