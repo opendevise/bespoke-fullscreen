@@ -31,19 +31,23 @@ h1, p {
 
 #presentation.bespoke-parent {
   visibility: visible;
+}
+
+#presentation.bespoke-parent,
+.bespoke-scale-parent {
   position: absolute;
-  /*
   top: 0;
+  left: 0;
+
+  /*
   right: 0;
   bottom: 0;
-  left: 0;
   */
-
-  /* ...or use view sizes */
-  top: 0;
-  left: 0;
+  /* ...or use view sizes; seems to break strategy of bespoke-scale in Firefox */
   width: 100vw;
   height: 100vh;
+
+  overflow: hidden;
 }
 
 #presentation .bespoke-slide {
@@ -65,13 +69,17 @@ h1, p {
      -moz-transition: transform .3s ease, opacity .3s ease;
        -o-transition: transform .3s ease, opacity .3s ease;
           transition: transform .3s ease, opacity .3s ease;
+
   /* force opacity to start at 0 to avoid transition on load when using bespoke-scale */
   opacity: 0;
 }
 
+/* redundant */
+/*
 #presentation .bespoke-inactive {
   opacity: 0;
 }
+*/
 
 #presentation .bespoke-active {
   opacity: 1;
