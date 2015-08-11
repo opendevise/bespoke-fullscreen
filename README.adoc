@@ -1,0 +1,56 @@
+= bespoke-fullscreen
+Dan Allen
+:idprefix:
+:idseparator: -
+
+Toggles overscreen mode when the "f" key is pressed in a http://markdalgleish.com/projects/bespoke.js[bespoke.js] presentation.
+Delegates to the native fullscreen mechanism in the browser.
+
+== Download
+
+Download the https://raw.github.com/opendevise/bespoke-fullscreen/master/dist/bespoke-fullscreen.min.js[production version] or the https://raw.github.com/opendevise/bespoke-fullscreen/master/dist/bespoke-fullscreen.js[development version], or use a <<package-managers,package manager>>.
+
+== Usage
+
+This plugin is shipped in a https://github.com/umdjs/umd[UMD format], meaning that it is available as a CommonJS/AMD module or browser global.
+
+For example, when using CommonJS modules:
+
+```js
+var bespoke = require('bespoke'),
+  fullscreen = require('bespoke-fullscreen');
+
+bespoke.from('#presentation', [
+  fullscreen()
+]);
+```
+
+When using browser globals:
+
+```js
+bespoke.from('#presentation', [
+  bespoke.plugins.fullscreen()
+]);
+```
+
+== Package managers
+
+=== npm
+
+```bash
+$ npm install bespoke-fullscreen
+```
+
+=== Bower
+
+```bash
+$ bower install bespoke-fullscreen
+```
+
+== Credits
+
+This plugin was built with https://github.com/markdalgleish/generator-bespokeplugin[generator-bespokeplugin].
+
+== License
+
+http://en.wikipedia.org/wiki/MIT_License[MIT License]
