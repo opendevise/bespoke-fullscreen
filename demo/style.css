@@ -58,13 +58,17 @@ h1, p {
   margin-left: -320px;
   height: 360px;
   margin-top: -180px;
+  display: -webkit-flex;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  padding: 1em;
   /* use box shadow to indicate edge of slide in demo */
   box-shadow: 0 0 10px rgba(0,0,0,0.25);
-  padding: 1em;
   -webkit-transition: transform .3s ease, opacity .3s ease;
      -moz-transition: transform .3s ease, opacity .3s ease;
        -o-transition: transform .3s ease, opacity .3s ease;
