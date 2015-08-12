@@ -1,6 +1,10 @@
-bespoke.from('#presentation', [
+var deck = bespoke.from('#presentation', [
   bespoke.plugins.classes(),
-  bespoke.plugins.scale(),
+  // scale plugin will attempt to use zoom in Chrome unless we specify transform
+  bespoke.plugins.scale('transform'),
   bespoke.plugins.keys(),
   bespoke.plugins.fullscreen()
 ]);
+
+// expose API to other applications
+window.deck = deck;
