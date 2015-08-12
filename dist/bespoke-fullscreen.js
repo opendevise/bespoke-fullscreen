@@ -27,7 +27,7 @@ module.exports = function(options) {
         if (method) { method.apply(element); }
       },
       elementIsReadOnly = function(element) {
-        return element.readOnly !== false;
+        return !(element.readOnly === false || element.isContentEditable);
       };
 
     if (fullscreenEnabled) {
