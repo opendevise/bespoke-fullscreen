@@ -21,6 +21,10 @@ h1, p {
   font-size: 2em;
   line-height: 1.6;
   color: #303030;
+  /* enable kerning using forward-compatible CSS */
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
   visibility: hidden;
 }
 
