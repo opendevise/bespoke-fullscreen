@@ -54,6 +54,19 @@ h1, p {
   overflow: hidden;
 }
 
+.bespoke-scale-parent {
+  /* prevent wrapper elements of inactive slides from blocking focus of the current slide */
+  visibility: hidden;
+
+  /* force Chrome to reraster slide content on resize by adding just enough transition */
+  /* if this hack doesn't work, then advancing to next slide should force a repaint */
+  /* QUESTION should scale plugin should add this if accel is enabled? */
+  /*
+  -webkit-transition: transform .1s linear;
+          transition: transform .1s linear;
+  */
+}
+
 #presentation .bespoke-slide {
   position: absolute;
   top: 50%;
@@ -80,17 +93,18 @@ h1, p {
 
   /* force opacity to start at 0 to avoid transition on load when using bespoke-scale */
   opacity: 0;
+  visibility: visible;
 }
 
-/* redundant */
-/*
 #presentation .bespoke-inactive {
-  opacity: 0;
+  /* setting opacity here is redundant */
+  /*opacity: 0;*/
+  /* don't let pointer events get trapped by inactive slides */
+  pointer-events: none;
 }
-*/
 
 #presentation .bespoke-active {
   opacity: 1;
-  /* ensure current slide is on the top */
-  z-index: 1;
+  /* ensure current slide is on the top; hmmm...don't seem to work */
+  /*z-index: 1;*/
 }
