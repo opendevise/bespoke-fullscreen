@@ -7,6 +7,8 @@ Dan Allen
 Toggles overscreen mode when the kbd:[f] key is pressed in a http://markdalgleish.com/projects/bespoke.js[bespoke.js] presentation.
 Delegates to the native fullscreen mechanism of the browser.
 
+TIP: If you have form elements in your slides, use the https://github.com/markdalgleish/bespoke-forms[bespoke-forms] plugin to prevent fullscreen toggle from being triggered while typing.
+
 == Download
 
 Download the https://raw.github.com/opendevise/bespoke-fullscreen/master/dist/bespoke-fullscreen.min.js[production version] or the https://raw.github.com/opendevise/bespoke-fullscreen/master/dist/bespoke-fullscreen.js[development version], or use a <<package-managers,package manager>>.
