@@ -12,8 +12,16 @@ body {
   margin: 0;
 }
 
-h1, p {
+h1 {
+  margin: 0;
+}
+
+p {
   margin: 0.5em 0;
+}
+
+input[type="text"] {
+  vertical-align: middle;
 }
 
 #presentation {
@@ -25,11 +33,13 @@ h1, p {
   text-rendering: optimizeLegibility;
   font-feature-settings: "kern" 1;
   font-kerning: normal;
+  /* QUESTION should we toggle display property instead of visibility? */
   visibility: hidden;
 }
 
 #presentation section {
-  /* hide until bespoke classes are added; also prevents transitions during load */
+  /* hide slides until bespoke classes are added; prevents transitions during load */
+  /* QUESTION should we toggle visibility instead? That doesn't appear to solve the messy load problem */
   display: none;
 }
 
@@ -37,7 +47,7 @@ h1, p {
   visibility: visible;
 }
 
-#presentation.bespoke-parent,
+.bespoke-parent,
 .bespoke-scale-parent {
   position: absolute;
   top: 0;
@@ -47,10 +57,13 @@ h1, p {
   right: 0;
   bottom: 0;
   */
-  /* ...or use view sizes */
+  /* ...or use size of viewport */
   width: 100vw;
   height: 100vh;
+}
 
+.bespoke-parent {
+  /* QUESTION should we move this to #presentation ? */
   overflow: hidden;
 }
 
@@ -60,51 +73,59 @@ h1, p {
 
   /* force Chrome to reraster slide content on resize by adding just enough transition */
   /* if this hack doesn't work, then advancing to next slide should force a repaint */
-  /* QUESTION should scale plugin should add this if accel is enabled? */
+  /* QUESTION should scale plugin should add this automatically if accel option is enabled? */
   /*
-  -webkit-transition: transform .1s linear;
-          transition: transform .1s linear;
+  -webkit-transition: transform 0.1s linear;
+          transition: transform 0.1s linear;
   */
 }
 
-#presentation .bespoke-slide {
+#presentation section.bespoke-slide {
+  /* QUESTION should we toggle visibility instead? That doesn't appear to solve the messy load problem. */
+  display: -webkit-flex;
+          display: flex;
+}
+
+/* QUESTION move some of these properties to #presentation section rule? */
+.bespoke-slide {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 640px;
-  margin-left: -320px;
   height: 360px;
+  /* left and top margins must be negative and half of width and height, respectively */
+  margin-left: -320px;
   margin-top: -180px;
-  display: -webkit-flex;
-  display: flex;
   -webkit-align-items: center;
           align-items: center;
   -webkit-justify-content: center;
           justify-content: center;
   -webkit-flex-direction: column;
           flex-direction: column;
+  /* QUESTION should we apply padding to inner content container instead? */
   padding: 1em;
   /* use box shadow to indicate edge of slide in demo */
   box-shadow: 0 0 10px rgba(0,0,0,0.25);
-  -webkit-transition: transform .3s ease, opacity .3s ease;
-     -moz-transition: transform .3s ease, opacity .3s ease;
-       -o-transition: transform .3s ease, opacity .3s ease;
-          transition: transform .3s ease, opacity .3s ease;
+  -webkit-transition: transform 0.3s ease, opacity 0.3s ease;
+     -moz-transition: transform 0.3s ease, opacity 0.3s ease;
+       -o-transition: transform 0.3s ease, opacity 0.3s ease;
+          transition: transform 0.3s ease, opacity 0.3s ease;
 
   /* force opacity to start at 0 to avoid transition on load when using bespoke-scale */
   opacity: 0;
+  /* revert visibility inherited by bespoke-scale-parent */
   visibility: visible;
 }
 
-#presentation .bespoke-inactive {
+.bespoke-inactive {
   /* setting opacity here is redundant */
   /*opacity: 0;*/
   /* don't let pointer events get trapped by inactive slides */
   pointer-events: none;
 }
 
-#presentation .bespoke-active {
+.bespoke-active {
   opacity: 1;
-  /* ensure current slide is on the top; hmmm...don't seem to work */
-  /*z-index: 1;*/
+  /* ensure current slide is on the top; only relevant for opacity transitions */
+  z-index: 100;
 }
