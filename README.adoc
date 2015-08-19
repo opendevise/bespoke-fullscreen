@@ -4,10 +4,10 @@ Dan Allen
 :idseparator: -
 :experimental:
 
-Toggles overscreen mode when the kbd:[f] key is pressed in a http://markdalgleish.com/projects/bespoke.js[bespoke.js] presentation.
+Toggles fullscreen mode when either the kbd:[f] or kbd:[F11] key is pressed in a http://markdalgleish.com/projects/bespoke.js[bespoke.js] presentation.
 Delegates to the native fullscreen mechanism of the browser.
 
-TIP: If you have form elements in your slides, use the https://github.com/markdalgleish/bespoke-forms[bespoke-forms] plugin to prevent fullscreen toggle from being triggered while typing.
+TIP: If you have form elements in your slides, use the https://github.com/markdalgleish/bespoke-forms[bespoke-forms] plugin to prevent the fullscreen toggle from being triggered when typing "`f`" inside a form input or editable region.
 
 == Download
 
@@ -23,7 +23,7 @@ For example, when using CommonJS modules:
 var bespoke = require('bespoke'),
   fullscreen = require('bespoke-fullscreen');
 
-bespoke.from('#presentation', [
+bespoke.from('.presentation', [
   fullscreen()
 ]);
 ```
@@ -31,7 +31,7 @@ bespoke.from('#presentation', [
 When using browser globals:
 
 ```js
-bespoke.from('#presentation', [
+bespoke.from('.presentation', [
   bespoke.plugins.fullscreen()
 ]);
 ```
@@ -52,7 +52,7 @@ $ bower install bespoke-fullscreen
 
 == Credits
 
-This plugin was built with https://github.com/markdalgleish/generator-bespokeplugin[generator-bespokeplugin].
+This plugin was initialized using the https://github.com/markdalgleish/generator-bespokeplugin[generator-bespokeplugin] for Yeoman.
 
 == License
 
