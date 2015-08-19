@@ -1,4 +1,4 @@
-var deck = bespoke.from('#presentation', [
+var deck = bespoke.from('.presentation', [
   bespoke.plugins.classes(),
   // scale plugin will attempt to use zoom in Chrome unless we specify transform
   bespoke.plugins.scale(),
