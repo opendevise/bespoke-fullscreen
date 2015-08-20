@@ -26,7 +26,7 @@ module.exports = function(options) {
         if (method) method.apply(element);
       },
       isModifierKeyDown = function(e) {
-        return e.ctrlKey || e.shiftKey || e.altKey || e.metaKey;
+        return !!(e.ctrlKey || e.shiftKey || e.altKey || e.metaKey);
       };
 
     if (fullscreenEnabled) {
