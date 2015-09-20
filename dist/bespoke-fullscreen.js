@@ -6,39 +6,37 @@
  */
 
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g=(g.bespoke||(g.bespoke = {}));g=(g.plugins||(g.plugins = {}));g.fullscreen = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-module.exports = function(options) {
+module.exports = function() {
   return function(deck) {
-    var KEYCODE = { f: 70, f11: 122 },
-      fullscreenEnabled = document.fullscreenEnabled || document.webkitFullscreenEnabled ||
-          document.mozFullScreenEnabled || document.msFullscreenEnabled,
+    var KEY_F = 70, KEY_F11 = 122, EVT_KEYDOWN = 'keydown',
       toggleFullscreen = function() {
-        var element, method;
-        // NOTE does not exit from full screen if initiated by F11 outside this window
-        if (document.fullscreenElement || document.mozFullScreenElement ||
-            document.webkitFullscreenElement || document.msFullscreenElement) {
-          method = (element = document).exitFullscreen || element.webkitExitFullscreen ||
-              element.mozCancelFullScreen || element.msExitFullscreen;
+        var el, func;
+        if (document.fullscreenElement || document.webkitFullscreenElement ||
+            document.mozFullScreenElement || document.msFullscreenElement) {
+          // NOTE does not exit from full screen if initiated by F11 outside this window
+          func = (el = document).exitFullscreen ||
+              el.webkitExitFullscreen || el.mozCancelFullScreen || el.msExitFullscreen;
         }
         else {
-          method = (element = document.documentElement).requestFullscreen || element.webkitRequestFullscreen ||
-              element.mozRequestFullScreen || element.msRequestFullscreen;
+          func = (el = document.documentElement).requestFullscreen ||
+              el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
         }
-        if (method) method.apply(element);
+        if (func) func.apply(el);
       },
-      isModifierKeyDown = function(e) {
+      isModifierPressed = function(e) {
         return !!(e.ctrlKey || e.shiftKey || e.altKey || e.metaKey);
-      };
-
-    if (fullscreenEnabled) {
-      document.addEventListener('keydown', function(e) {
-        var keyCode = e.which;
-        if ((keyCode === KEYCODE.f || keyCode === KEYCODE.f11) && !isModifierKeyDown(e)) {
+      },
+      onKeydown = function(e) {
+        var key = e.which;
+        if ((key === KEY_F || key === KEY_F11) && !isModifierPressed(e)) {
           toggleFullscreen();
-          if (keyCode === KEYCODE.f11) {
-            e.preventDefault();
-          }
+          if (key === KEY_F11) e.preventDefault();
         }
-      }, false);
+      };
+    if (document.fullscreenEnabled || document.webkitFullscreenEnabled ||
+        document.mozFullScreenEnabled || document.msFullscreenEnabled) {
+      deck.on('destroy', function() { document.removeEventListener(EVT_KEYDOWN, onKeydown); });
+      document.addEventListener(EVT_KEYDOWN, onKeydown);
     }
   };
 };
