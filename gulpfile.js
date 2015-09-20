@@ -1,18 +1,14 @@
 var gulp = require('gulp'),
-  del = require('del'),
-  jshint = require('gulp-jshint'),
-  map = require('vinyl-map'),
-  istanbul = require('istanbul'),
-  karma = require('karma'),
-  coveralls = require('gulp-coveralls'),
-  header = require('gulp-header'),
-  rename = require('gulp-rename'),
-  uglify = require('gulp-uglify'),
   pkg = require('./package.json'),
   browserify = require('browserify'),
-  source = require('vinyl-source-stream'),
   buffer = require('vinyl-buffer'),
-  path = require('path');
+  del = require('del'),
+  header = require('gulp-header'),
+  jshint = require('gulp-jshint'),
+  karma = require('karma'),
+  rename = require('gulp-rename'),
+  source = require('vinyl-source-stream'),
+  uglify = require('gulp-uglify');
 
 gulp.task('default', ['clean', 'lint', 'test', 'compile']);
 gulp.task('dev', ['compile', 'lint', 'test', 'watch']);
@@ -23,7 +19,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('clean', function(done) {
-  del(['dist', 'lib-instrumented', 'test/coverage'], done);
+  del(['dist', 'test/coverage'], done);
 });
 
 gulp.task('lint', function() {
@@ -32,27 +28,11 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
-//gulp.task('instrument', ['clean'], function() {
-gulp.task('instrument', function() {
-  return gulp.src('lib/**/*.js')
-    .pipe(map(function(code, filename) {
-      var instrumenter = new istanbul.Instrumenter(),
-        relativePath = path.relative(__dirname, filename);
-      return instrumenter.instrumentSync(code.toString(), relativePath);
-    }))
-    .pipe(gulp.dest('lib-instrumented'));
-});
-
-gulp.task('test', ['instrument'], function(done) {
+gulp.task('test', function(done) {
   new karma.Server({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
   }, done).start();
-});
-
-gulp.task('coveralls', ['test'], function() {
-  return gulp.src(['test/coverage/**/lcov.info'])
-    .pipe(coveralls());
 });
 
 gulp.task('compile', ['clean'], function() {

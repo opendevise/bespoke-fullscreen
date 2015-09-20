@@ -1,5 +1,5 @@
 /*!
- * bespoke-fullscreen v1.0.0
+ * bespoke-fullscreen v1.0.0-dev
  *
  * Copyright 2015, Dan Allen
  * This content is released under the MIT license

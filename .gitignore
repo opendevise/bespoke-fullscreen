@@ -1,4 +1,6 @@
-node_modules
-bower_components
-lib-instrumented
-test/coverage
+/bower_components/
+/demo/dist/
+/node_modules/
+/test/coverage/
+/package-README.md
+

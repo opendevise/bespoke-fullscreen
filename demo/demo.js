@@ -1,11 +1,8 @@
-var deck = bespoke.from('.presentation', [
+var isWebKit = 'webkitAppearance' in document.documentElement.style;
+var deck = bespoke.from('.deck', [
   bespoke.plugins.classes(),
-  // scale plugin will attempt to use zoom in Chrome unless we specify transform
-  bespoke.plugins.scale(),
-  //bespoke.plugins.scale('transform'),
-  // transform-group is a proposed change; see https://github.com/markdalgleish/bespoke-scale/pull/5
-  //bespoke.plugins.scale('transform-group'),
   bespoke.plugins.keys(),
+  bespoke.plugins.scale(isWebKit ? 'zoom' : 'transform'),
   bespoke.plugins.fullscreen(),
   bespoke.plugins.forms()
 ]);
