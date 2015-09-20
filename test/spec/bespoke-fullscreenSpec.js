@@ -49,21 +49,32 @@ describe('bespoke-fullscreen', function() {
     });
 
     ['f', 'f11'].forEach(function(key) {
-      it('requests fullscreen when ' + key + ' key is pressed', function() {
+      it('requests fullscreen when ' + key + ' key is pressed and fullscreen is not active', function() {
         pressKey(key);
         expect(document.documentElement.requestFullscreen.calls.count()).toBe(1);
       });
 
-      it('exits fullscreen when ' + key + ' key is pressed', function() {
+      it('exits fullscreen when ' + key + ' key is pressed and fullscreen is active', function() {
         document.fullscreenElement = true;
         pressKey(key);
         expect(document.exitFullscreen.calls.count()).toBe(1);
       });
 
-      it('does not request fullscreen when ' + key + ' key is pressed when modifier is pressed', function() {
+      it('does not toggle fullscreen when ' + key + ' key is pressed when modifier is pressed', function() {
         pressKey(key, { shiftKey: true});
         expect(document.documentElement.requestFullscreen.calls.count()).toBe(0);
       });
+    });
+
+    it('requests fullscreen when fullscreen.toggle event is fired and fullscreen is not enabled', function() {
+      deck.fire('fullscreen.toggle');
+      expect(document.documentElement.requestFullscreen.calls.count()).toBe(1);
+    });
+
+    it('exits fullscreen when fullscreen.toggle event is fired and fullscreen is enabled', function() {
+      document.fullscreenElement = true;
+      deck.fire('fullscreen.toggle');
+      expect(document.exitFullscreen.calls.count()).toBe(1);
     });
   });
 });
