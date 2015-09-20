@@ -1,6 +1,6 @@
 {
   "name": "bespoke-fullscreen",
-  "version": "1.0.0-dev",
+  "version": "1.0.0",
   "description": "Toggles fullscreen mode in a Bespoke.js presentation.",
   "homepage": "https://github.com/opendevise/bespoke-fullscreen",
   "bugs": "https://github.com/opendevise/bespoke-fullscreen/issues",
