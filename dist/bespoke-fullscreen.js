@@ -21,7 +21,7 @@ module.exports = function() {
           func = (el = document.documentElement).requestFullscreen ||
               el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
         }
-        if (func) func.apply(el);
+        func.apply(el);
       },
       isModifierPressed = function(e) {
         return !!(e.ctrlKey || e.shiftKey || e.altKey || e.metaKey);
