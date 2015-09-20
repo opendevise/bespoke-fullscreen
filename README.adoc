@@ -4,7 +4,7 @@ Dan Allen <https://github.com/mojavelinux>
 :idprefix:
 :idseparator: -
 :experimental:
-ifdef::env-github[:badges:]
+//ifdef::env-github[:badges:]
 // Variables:
 :release-version: master
 // URIs:
@@ -22,7 +22,7 @@ TIP: If you have form elements in your slides, use the https://github.com/markda
 
 == Example
 
-//http://opendevise.github.io/bespoke-fullscreen[View the demo] online.
+http://opendevise.github.io/bespoke-fullscreen[View the demo] online.
 
 This repository includes a demo folder the shows this plugin in action.
 To view it locally, you first need to clone this repository:
