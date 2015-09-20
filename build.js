@@ -264,7 +264,7 @@ module.exports = function(options) {
 (1)
 });
 /*!
- * bespoke-fullscreen v1.0.0-dev
+ * bespoke-fullscreen v1.0.0
  *
  * Copyright 2015, Dan Allen
  * This content is released under the MIT license
@@ -278,7 +278,6 @@ module.exports = function() {
         var el, func;
         if (document.fullscreenElement || document.webkitFullscreenElement ||
             document.mozFullScreenElement || document.msFullscreenElement) {
-          // NOTE does not exit from full screen if initiated by F11 outside this window
           func = (el = document).exitFullscreen ||
               el.webkitExitFullscreen || el.mozCancelFullScreen || el.msExitFullscreen;
         }
@@ -286,7 +285,7 @@ module.exports = function() {
           func = (el = document.documentElement).requestFullscreen ||
               el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
         }
-        if (func) func.apply(el);
+        func.apply(el);
       },
       isModifierPressed = function(e) {
         return !!(e.ctrlKey || e.shiftKey || e.altKey || e.metaKey);
@@ -301,6 +300,7 @@ module.exports = function() {
     if (document.fullscreenEnabled || document.webkitFullscreenEnabled ||
         document.mozFullScreenEnabled || document.msFullscreenEnabled) {
       deck.on('destroy', function() { document.removeEventListener(EVT_KEYDOWN, onKeydown); });
+      deck.on('fullscreen.toggle', toggleFullscreen);
       document.addEventListener(EVT_KEYDOWN, onKeydown);
     }
   };
