@@ -24,7 +24,7 @@ TIP: If you have form elements in your slides, use the https://github.com/markda
 
 http://opendevise.github.io/bespoke-fullscreen[View the demo] online.
 
-This repository includes a demo folder the shows this plugin in action.
+This repository includes a demo folder that shows this plugin in action.
 To view it locally, you first need to clone this repository:
 
  $ git clone https://github.com/opendevise/bespoke-fullscreen && cd bespoke-fullscreen
