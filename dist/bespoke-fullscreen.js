@@ -1,7 +1,7 @@
 /*!
  * bespoke-fullscreen v1.0.1-dev
  *
- * Copyright 2015, Dan Allen
+ * Copyright 2016, Dan Allen
  * This content is released under the MIT license
  */
 
